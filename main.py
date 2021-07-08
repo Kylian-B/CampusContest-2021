@@ -1,6 +1,7 @@
 import uuid
 import os
 import string
+import json
 
 
 class Chain:
@@ -17,9 +18,6 @@ class Wallet (object):
 
     def __init__(self, solder):
         self.solder = float(solder)
-
-    def NouveauSolde(self, somme):
-        self.solde = float(somme)
 
     def add_balance(self, somme):
         self.solder += somme
@@ -42,5 +40,13 @@ class Wallet (object):
 
         return True
 
+    @app.route('/content/wallets', methods=['GET'])
+    def save(self):
+        wallet = json.dumps(Wallet.unique_id)
 
+    def load(self):
+        user = open(Wallet.unique_id)
+        data = json.load(user)
+
+        user.close()
 class Block:
